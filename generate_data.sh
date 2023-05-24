@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-NUM_PAR=`expr $1 -1`
+NUM_PAR=`expr $1 - 1`
 cd ~/dataplex-tutorials/data_generator
 for dt in $(eval echo "{0..$NUM_PAR}")
 do
