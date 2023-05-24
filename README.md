@@ -19,5 +19,6 @@ echo ${REGION}
 ## Generate and Stage Synthetic data
 
 ```
+cd dataplex-tutorials
 bash generate_data.sh 2
 ```
