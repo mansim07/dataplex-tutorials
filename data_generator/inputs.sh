@@ -1,6 +1,7 @@
 #date value for gcs path 
 #date_partition=2020-10-10
-date_partition=`date "+%Y-%m-%d"`
+#date_partition=`date "+%Y-%m-%d"`
+date_partition=${DATE_PARTITION}
 local_data_dir="/tmp/data/"
 
 #Customer Inputs
@@ -33,7 +34,7 @@ merchant_gcs_filename="${cc_merchant_data}/date=${date_partition}/${merchant_fil
 mcc_gcs_filename="mcc_codes/date=${date_partition}/${mcc_file_name}"
 #make sure "cc_merchant_file" is set
 merchant_dq_ds="merchant_raw_data"
-mcc_dq_ds="merchants_reference_data"
+mcc_dq_ds="merchants_ref_data"
 merchant_bq_table="core_merchants"
 mcc_bq_table="mcc_code"
 
@@ -41,7 +42,7 @@ mcc_bq_table="mcc_code"
 #Credit Card Transactions Inputs
 transaction_project=${PROJECT_ID}
 transaction_bucket="${PROJECT_ID}_trasactions_data"
-cc_ref_bq_dataset="lookup_data"
+cc_ref_bq_dataset="transaction_ref_data"
 cc_hive_parent="auth_data"
 num_of_trans_per_cust=3
 cc_trans_seed=30

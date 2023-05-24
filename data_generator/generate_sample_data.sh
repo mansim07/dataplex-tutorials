@@ -31,7 +31,7 @@ create_gcs_bucket() {
     region=${3}
 
     if ! gsutil ls -p ${project_id} gs://${bucket} &>/dev/null; then
-        echo "creating gs://${bucket} ... "
+        echo "Creating gs://${bucket} ... "
         gsutil mb -p ${project_id} -c regional -l ${region} gs://${bucket}
         sleep 5
     else
@@ -87,10 +87,12 @@ echo "Customer raw data dataset successfully created."
 
 echo "Creating the merchant raw data dataset."
 create_bq_dataset $PROJECT_ID ${merchant_dq_ds} ${REGION}
+create_bq_dataset $PROJECT_ID ${mcc_dq_ds} ${REGION}
 echo "Merchant raw data dataset successfully created."
 
 echo "Creating the transaction raw data dataset."
 create_bq_dataset $PROJECT_ID ${auth_bq_ds} ${REGION}
+create_bq_dataset $PROJECT_ID ${cc_ref_bq_dataset} ${REGION}
 echo "Transaction raw data dataset successfully created."
 
 #=============================================
@@ -159,7 +161,7 @@ if [ $res -eq 0 ]; then
         --time_partitioning_type=DAY \
         --hive_partitioning_mode=AUTO \
         --hive_partitioning_source_uri_prefix=gs://${merchant_bucket}/${cc_merchant_data} \
-        ${merchant_dq_ds} ${merchant_bq_table} gs://${merchant_bucket}/${merchant_gcs_filename}
+        ${merchant_dq_ds}.${merchant_bq_table} gs://${merchant_bucket}/${merchant_gcs_filename}
 
     bq load \
         --project_id=${merchant_project} \
@@ -170,7 +172,7 @@ if [ $res -eq 0 ]; then
         --skip_leading_rows=1 \
         --allow_quoted_newlines \
         --allow_jagged_rows \
-        mcc_dq_ds.${mcc_bq_table} gs://${merchant_bucket}/${mcc_gcs_filename}
+        ${mcc_dq_ds}.${mcc_bq_table} gs://${merchant_bucket}/${mcc_gcs_filename}
 fi
 
 #=============================================

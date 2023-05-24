@@ -180,7 +180,7 @@ if __name__ == '__main__':
 
                 for row in csv_reader:
                     # row variable is a list that represents a row in csv
-                    print(count)
+                    #print(count)
                     count=count+1 
                     #for _ in range(merchant_per_mcc):
 
