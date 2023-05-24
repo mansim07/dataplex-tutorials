@@ -19,5 +19,5 @@ echo ${REGION}
 ## Generate and Stage Synthetic data
 
 ```
-bash generate_data.sh
+bash generate_data.sh 2
 ```
