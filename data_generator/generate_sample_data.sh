@@ -111,7 +111,7 @@ if [ $res -eq 0 ]; then
 
     bq load \
         --project_id=${customer_project} \
-        --replace \
+        --replace=false \
         --autodetect \
         --source_format=CSV \
         --field_delimiter="|" \
@@ -122,7 +122,7 @@ if [ $res -eq 0 ]; then
 
     bq load \
         --project_id=${customer_project} \
-        --replace \
+        --replace=false \
         --autodetect \
         --source_format=CSV \
         --field_delimiter="|" \
@@ -150,7 +150,7 @@ if [ $res -eq 0 ]; then
 
     bq load \
         --project_id=${merchant_project} \
-        --replace \
+        --replace=false \
         --autodetect \
         --source_format=CSV \
         --field_delimiter="|" \
@@ -195,7 +195,7 @@ if [ $res -eq 0 ]; then
 
         bq load \
             --project_id=${transaction_project} \
-            --replace \
+            --replace=false \
             --autodetect \
             --source_format=CSV \
             --field_delimiter="|" \
