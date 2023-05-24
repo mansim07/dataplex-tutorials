@@ -1,0 +1,1 @@
+python3 upload_ref_data.py bankofmars-retail-credit-cards bankofmars_retail_credit_cards_trasactions_data
